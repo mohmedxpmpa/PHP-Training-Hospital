@@ -1,3 +1,24 @@
 * {
-    font-family: “Droid Arabic Kufi”, serif;
+    font-family: 'Almarai', sans-serif;
+    border: 0;
+    box-sizing: border-box;
 }
+
+@font-face {
+    font-family: 'Almarai';
+    src: URL('Almarai-Regular.ttf') format('truetype');
+  }
+
+  .logo{
+      text-align: center;
+      margin: 30px 0;
+  }
+
+  .logo img{
+      width:  380px;
+  }
+
+  .logo h2{
+      font-size: 30px;
+      font-weight: 600px;
+  }
