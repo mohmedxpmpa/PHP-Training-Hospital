@@ -1,6 +1,7 @@
 * {
     font-family: 'Almarai', sans-serif;
     box-sizing: border-box;
+    direction: rtl;
 }
 
 @font-face {
@@ -20,4 +21,26 @@
   .logo h2{
       font-size: 30px;
       font-weight: 600px;
+  }
+
+  .book {
+    text-align: center;
+  }
+
+  .book p {
+      font-size: 24px;
+  }
+
+  .book  input {
+      width: 50%;
+      margin-bottom: 15px;
+      padding: 10px;
+  }
+
+  .book input[type="submit"]{
+      font-size: 20px;
+      font-weight: bold;
+      color: rgb(243, 247, 243);
+      background: #4CAF50;
+      border: none;
   }

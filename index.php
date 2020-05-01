@@ -29,7 +29,7 @@
                 <input type="text" name="Name" id="" placeholder="ادخل الأسم">
                 <input type="text" name="Email" id="" placeholder="ادخل البريد الالكتروني">
                 <input type="date" name="Date" id="">
-                <input type="submit" value="احجز الان" name="Send">
+                <input type="submit" value="احجز الان" >
             </form>
         </div>
     </div>
