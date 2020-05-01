@@ -22,8 +22,17 @@
             <img src="images/hospital-logo.jpg">
             <h2>مستشفي الشفاء</h2>
         </div>
-    </div>
 
+        <div class="book">
+            <p>اهلا بك في مستشفي الشفاء , للحجز اكتب بياتاتك في الاستماره ادناه</p>
+            <form action="">
+                <input type="text" name="Name" id="" placeholder="ادخل الأسم">
+                <input type="text" name="Email" id="" placeholder="ادخل البريد الالكتروني">
+                <input type="date" name="Date" id="">
+                <input type="submit" value="احجز الان" name="Send">
+            </form>
+        </div>
+    </div>
 
     <script src="" async defer></script>
 
