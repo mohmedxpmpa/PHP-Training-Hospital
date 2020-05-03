@@ -29,50 +29,44 @@
                 <input type="text" name="name" id="" value="" placeholder="ادخل الأسم">
                 <input type="text" name="email" id="" value="" placeholder="ادخل البريد الالكتروني">
                 <input type="date" name="date" id="" value="">
-                <input type="submit" value="احجز الان" name="send" >
+                <input type="submit" value="احجز الان" name="send">
             </form>
 
-            <?php
-
-// php insert data to mysql database using PDO
-
-if(isset($_POST['send']))
-{
-    try {
-
-        // connect to mysql
-
-        $pdoConnect = new PDO("mysql:host=localhost;dbname=php-hospital","root","",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8"));
-    } catch (PDOException $exc) {
-        echo $exc->getMessage();
-        exit();
-    }
-
-    // get values form input text and number
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $date = $_POST['date'];
-    
-    // mysql query to insert data
-
-    $pdoQuery = "INSERT INTO `patient`(`name`, `email`, `date`) VALUES (:name,:email,:date)";
-    
-    $pdoResult = $pdoConnect->prepare($pdoQuery);
-    
-    $pdoExec = $pdoResult->execute(array(":name"=>$name,":email"=>$email,":date"=>$date));
-    
-        // check if mysql insert query successful
-    if($pdoExec)
+<?php
+    // php insert data to mysql database using PDO
+    if(isset($_POST['send']))
     {
-        echo 'تم الحجز بنجاح';
-    }else{
-        echo 'عفوا حدث خطا ما , حاول مره اخري';
+        try {
+
+            // connect to mysql
+
+            $pdoConnect   = new PDO("mysql:host=localhost;dbname=php-hospital","root","",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8"));
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+            exit();
+        }
+
+        // get values form input text and number
+        $email            = $_POST['email'];
+        $date             = $_POST['date'];
+        
+        // mysql query to insert data
+
+        $pdoQuery         = "INSERT INTO `patient`(`name`, `email`, `date`) VALUES (:name,:email,:date)";
+        
+        $pdoResult        = $pdoConnect->prepare($pdoQuery);
+        
+        $pdoExec          = $pdoResult->execute(array(":name"=>$name,":email"=>$email,":date"=>$date));
+        
+            // check if mysql insert query successful
+        if($pdoExec)
+        {
+            echo 'تم الحجز بنجاح';
+        }else{
+            echo 'عفوا حدث خطا ما , حاول مره اخري';
+        }
     }
-}
-
-
-?>
-
+ ?>
 
         </div>
     </div>
@@ -80,4 +74,5 @@ if(isset($_POST['send']))
     <script src="" async defer></script>
 
 </body>
+
 </html>
