@@ -33,12 +33,12 @@
             </form>
 
 <?php
-    // php insert data to mysql database using PDO
+    //  Insert Data to database 
     if(isset($_POST['send']))
     {
         try {
 
-            // connect to mysql
+            // Connect to mysql
 
             $pdoConnect   = new PDO("mysql:host=localhost;dbname=php-hospital","root","",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8"));
         } catch (PDOException $exc) {
@@ -46,7 +46,7 @@
             exit();
         }
 
-        // get values form input text and number
+        // Get values form input text and number
         $email            = $_POST['email'];
         $date             = $_POST['date'];
         

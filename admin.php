@@ -8,48 +8,30 @@
     <th>اسم المريض</th>
     <th>البريد الاكتروني</th>
     <th>التاريخ</th>
-</table>
 
 
 
 <?php
-$servername   = "localhost";
-$username     = "root";
-$password     = "";
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=php-hospital", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //  echo "Connected successfully";
-    }
-catch(PDOException $e)
-    {
-    echo "Connection failed: " . $e->getMessage();
-    }
 
-// Insert patient information 
+    // connect to mysql
 
-$data = [
-    'name' => $name,
-    'surname' => $surname,
-    'sex' => $sex,
-];
-$sql = "INSERT INTO patient (name, surname, sex) VALUES (:name, :surname, :sex)";
-$stmt= $pdo->prepare($sql);
-$stmt->execute($data);
+    $pdoConnect   = new PDO("mysql:host=localhost;dbname=php-hospital","root","",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8"));
+} catch (PDOException $exc) {
+    echo $exc->getMessage();
+    exit();
+}
 
 // Get patient information from Database
 
-/* $stmt = $conn->query("SELECT * FROM patient");
-while ($row = $stmt->fetch()) {
-    echo $row['name']."<br />\n";
-} */
+$data = $pdoConnect ->query("SELECT * FROM patient")->fetchAll(PDO::FETCH_ASSOC);
 
-$data = $conn->query("SELECT * FROM patient")->fetchAll();
-// and somewhere later:
-foreach ($data as $row) {
-    echo $row['name']."<br />\n";
+    foreach ($data as $row) {
+  //  echo $row['name']."<br />\n";
+     echo "<tr><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['email'] . "</td><td>" . $row['date'] . "</td></tr>";
 }
+echo "</table>";
+
 
 ?>
