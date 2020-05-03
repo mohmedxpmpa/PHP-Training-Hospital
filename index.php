@@ -25,12 +25,55 @@
 
         <div class="book">
             <p>اهلا بك في مستشفي الشفاء , للحجز اكتب بياتاتك في الاستماره ادناه</p>
-            <form action="">
-                <input type="text" name="Name" id="" placeholder="ادخل الأسم">
-                <input type="text" name="Email" id="" placeholder="ادخل البريد الالكتروني">
-                <input type="date" name="Date" id="">
-                <input type="submit" value="احجز الان" >
+            <form method="post" action="">
+                <input type="text" name="name" id="" value="" placeholder="ادخل الأسم">
+                <input type="text" name="email" id="" value="" placeholder="ادخل البريد الالكتروني">
+                <input type="date" name="date" id="" value="">
+                <input type="submit" value="احجز الان" name="send" >
             </form>
+
+            <?php
+
+// php insert data to mysql database using PDO
+
+if(isset($_POST['send']))
+{
+    try {
+
+        // connect to mysql
+
+        $pdoConnect = new PDO("mysql:host=localhost;dbname=php-hospital","root","",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8"));
+    } catch (PDOException $exc) {
+        echo $exc->getMessage();
+        exit();
+    }
+
+    // get values form input text and number
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $date = $_POST['date'];
+    
+    // mysql query to insert data
+
+    $pdoQuery = "INSERT INTO `patient`(`name`, `email`, `date`) VALUES (:name,:email,:date)";
+    
+    $pdoResult = $pdoConnect->prepare($pdoQuery);
+    
+    $pdoExec = $pdoResult->execute(array(":name"=>$name,":email"=>$email,":date"=>$date));
+    
+        // check if mysql insert query successful
+    if($pdoExec)
+    {
+        echo 'تم الحجز بنجاح';
+    }else{
+        echo 'عفوا حدث خطا ما , حاول مره اخري';
+    }
+}
+
+
+?>
+
+
         </div>
     </div>
 
