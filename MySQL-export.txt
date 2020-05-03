@@ -1,0 +1,11 @@
+===Database php-hospital
+
+== Table structure for table patient
+
+|------
+|Column|Type|Null|Default
+|------
+|//**id**//|int(11)|No|
+|name|varchar(255)|No|
+|email|varchar(100)|No|
+|date|varchar(50)|No|
